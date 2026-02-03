@@ -44,7 +44,7 @@ const createList = (element) => {
   deleteButton.type = "button";
   deleteButton.class = "delete";
   deleteButton.style.display = "none";
-  toDoElement.textContent = `${element}        `;
+  toDoElement.textContent = `${element}`;
   addAction(toDoElement);
   addRemove(deleteButton, toDoElement);
   toDoElement.insertBefore(deleteButton, toDoElement.childNodes[0]);
