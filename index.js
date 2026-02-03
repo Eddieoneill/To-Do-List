@@ -50,9 +50,9 @@ const createList = (element) => {
   deleteButton.type = "button";
   deleteButton.class = "delete";
   deleteButton.style.display = "none";
-  deleteButton.style.backgroundColor = "#ff0000";
-  deleteButton.style.borderColor = "#ffffff";
-  deleteButton.style.color = "#ffffff";
+  deleteButton.style.backgroundColor = "#ffffff";
+  deleteButton.style.borderColor = "#da2c2c";
+  deleteButton.style.color = "#d44d4d";
   toDoElement.textContent = `${element}`;
   addAction(toDoElement);
   addRemove(deleteButton, toDoElement);
