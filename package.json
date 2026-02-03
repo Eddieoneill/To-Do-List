@@ -1,0 +1,25 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eddieoneill/To-Do-List.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Eddieoneill/To-Do-List/issues"
+  },
+  "homepage": "https://github.com/Eddieoneill/To-Do-List#readme",
+  "dependencies": {
+    "live-server": "^1.2.2"
+  }
+}
