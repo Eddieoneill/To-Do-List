@@ -10,6 +10,7 @@ body {
   display: flex;
   background-color: #bcd8f1;
   justify-content: center;
+  align-items: center;
 }
 
 .inputLabel {

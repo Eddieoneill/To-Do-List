@@ -4,7 +4,7 @@ const inputTextField = document.querySelector(".inputTextField");
 const lists = document.querySelector(".lists");
 const footer = document.querySelector("footer");
 const removeAllButton = document.createElement("button");
-let toDoList = [];
+const toDoList = [];
 
 inputButton.textContent = "Submit";
 inputButton.type = "button";
@@ -27,18 +27,26 @@ inputTextField.addEventListener("keydown", function (event) {
 });
 
 removeAllButton.addEventListener("click", function () {
-  for (let element of lists.childNodes) {
-    console.log(lists.childNodes.length);
-    element.remove();
-  }
+  lists.childNodes.forEach((element) => {
+    lists.removeChild(element);
+  });
+  // for (let element of lists.childNodes) {
+  //   console.log(lists.childNodes.length);
+  //   element.remove();
+  // }
 });
 
 const createList = (element) => {
   let toDoElement = document.createElement("li");
+  let deleteButton = document.createElement("button");
 
+  deleteButton.textContent = "Trash";
+  deleteButton.type = "button";
   toDoList.push(element);
-  toDoElement.textContent = element;
+  toDoElement.textContent = `${element}        `;
   addAction(toDoElement);
+  addRemove(deleteButton, toDoElement);
+  toDoElement.appendChild(deleteButton);
   lists.appendChild(toDoElement);
   inputTextField.value = "";
 };
@@ -53,7 +61,19 @@ const addAction = (element) => {
   });
 
   element.addEventListener("click", function () {
-    this.remove();
+    if (element.id === "line-through") {
+      element.style.textDecoration = "";
+      element.id = "";
+    } else {
+      element.id = "line-through";
+      element.style.textDecoration = "line-through";
+    }
+  });
+};
+
+const addRemove = (element1, element2) => {
+  element1.addEventListener("click", function () {
+    element2.remove();
   });
 };
 
