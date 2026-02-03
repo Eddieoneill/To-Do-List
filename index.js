@@ -8,10 +8,16 @@ const toDoList = [];
 
 inputButton.textContent = "Submit";
 inputButton.type = "button";
+inputButton.style.backgroundColor = "#3fdf00";
+inputButton.style.borderColor = "#ffffff";
+inputButton.style.color = "#ffffff";
 removeAllButton.textContent = "Remove All";
 removeAllButton.type = "button";
 footer.appendChild(removeAllButton);
 inputDiv.appendChild(inputButton);
+removeAllButton.style.backgroundColor = "#ffffff";
+removeAllButton.style.borderColor = "#da2c2c";
+removeAllButton.style.color = "#d44d4d";
 inputTextField.placeholder = "Type here...";
 
 inputButton.addEventListener("click", function () {
@@ -44,6 +50,9 @@ const createList = (element) => {
   deleteButton.type = "button";
   deleteButton.class = "delete";
   deleteButton.style.display = "none";
+  deleteButton.style.backgroundColor = "#ff0000";
+  deleteButton.style.borderColor = "#ffffff";
+  deleteButton.style.color = "#ffffff";
   toDoElement.textContent = `${element}`;
   addAction(toDoElement);
   addRemove(deleteButton, toDoElement);

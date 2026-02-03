@@ -12,6 +12,12 @@ body {
   justify-content: center;
 }
 
+.submit {
+  background-color: #77eb4a;
+  color: #ffffff;
+  border: none;
+}
+
 .inputLabel {
   color: #777474;
 }
