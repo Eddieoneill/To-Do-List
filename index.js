@@ -2,20 +2,41 @@ const inputDiv = document.querySelector(".inputContainer");
 const inputButton = document.createElement("button");
 const inputTextField = document.querySelector(".inputTextField");
 const lists = document.querySelector(".lists");
+const footer = document.querySelector("footer");
+const removeAllButton = document.createElement("button");
+let toDoList = [];
 
 inputButton.textContent = "Submit";
 inputButton.type = "button";
-
-inputButton.addEventListener("click", function () {
-  createList(inputTextField.value);
-});
-
+removeAllButton.textContent = "Remove All";
+removeAllButton.type = "button";
+footer.appendChild(removeAllButton);
 inputDiv.appendChild(inputButton);
 inputTextField.placeholder = "Type here...";
+
+inputButton.addEventListener("click", function () {
+  if (inputTextField.value !== "") {
+    createList(inputTextField.value);
+  }
+});
+
+inputTextField.addEventListener("keydown", function (event) {
+  if (event.key === "Enter" && inputTextField.value !== "") {
+    createList(inputTextField.value);
+  }
+});
+
+removeAllButton.addEventListener("click", function () {
+  for (let element of lists.childNodes) {
+    console.log(lists.childNodes.length);
+    element.remove();
+  }
+});
 
 const createList = (element) => {
   let toDoElement = document.createElement("li");
 
+  toDoList.push(element);
   toDoElement.textContent = element;
   addAction(toDoElement);
   lists.appendChild(toDoElement);
@@ -24,7 +45,7 @@ const createList = (element) => {
 
 const addAction = (element) => {
   element.addEventListener("mouseover", function () {
-    element.style.backgroundColor = "#dadf97";
+    element.style.backgroundColor = randomColorGenerater();
   });
 
   element.addEventListener("mouseout", function () {
@@ -34,4 +55,12 @@ const addAction = (element) => {
   element.addEventListener("click", function () {
     this.remove();
   });
+};
+
+const randomColorGenerater = () => {
+  let r = Math.floor(Math.random() * (500 - 0 + 1) + 0);
+  let g = Math.floor(Math.random() * (500 - 0 + 1) + 0);
+  let b = Math.floor(Math.random() * (500 - 0 + 1) + 0);
+
+  return `rgb(${r}, ${g}, ${b})`;
 };

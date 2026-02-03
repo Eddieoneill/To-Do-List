@@ -8,22 +8,14 @@ body {
 
 .container {
   display: flex;
-  grid-template-columns: 50px 50px 50px 50px;
-  grid-template-rows: 50px 50px 30px;
-  column-gap: 5px;
-  row-gap: 5px;
   background-color: #bcd8f1;
   justify-content: center;
 }
 
-/* #inputContainer {
-
-}
-
-header {
-
+.inputLabel {
+  color: #777474;
 }
 
 .lists {
-
-} */
+  font-size: large;
+}
