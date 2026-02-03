@@ -6,47 +6,61 @@ const footer = document.querySelector("footer");
 const removeAllButton = document.createElement("button");
 const toDoList = [];
 
-inputButton.textContent = "Submit";
-inputButton.type = "button";
-inputButton.style.backgroundColor = "#3fdf00";
-inputButton.style.borderColor = "#ffffff";
-inputButton.style.color = "#ffffff";
-removeAllButton.textContent = "Remove All";
-removeAllButton.type = "button";
-footer.appendChild(removeAllButton);
-inputDiv.appendChild(inputButton);
-removeAllButton.style.backgroundColor = "#ffffff";
-removeAllButton.style.borderColor = "#da2c2c";
-removeAllButton.style.color = "#d44d4d";
-inputTextField.placeholder = "Type here...";
+//populating the initial layout for the website
+const populateInitialLayout = () => {
+  inputButton.textContent = "Submit";
+  inputButton.type = "button";
+  inputButton.style.backgroundColor = "#3fdf00";
+  inputButton.style.borderColor = "#ffffff";
+  inputButton.style.color = "#ffffff";
+  removeAllButton.textContent = "Remove All";
+  removeAllButton.type = "button";
+  footer.appendChild(removeAllButton);
+  inputDiv.appendChild(inputButton);
+  removeAllButton.style.backgroundColor = "#ffffff";
+  removeAllButton.style.borderColor = "#da2c2c";
+  removeAllButton.style.color = "#d44d4d";
+  inputTextField.placeholder = "Type here...";
 
-inputButton.addEventListener("click", function () {
-  if (inputTextField.value !== "") {
-    createList(inputTextField.value);
-  }
-});
-
-inputTextField.addEventListener("keydown", function (event) {
-  if (event.key === "Enter" && inputTextField.value !== "") {
-    createList(inputTextField.value);
-  }
-});
-
-removeAllButton.addEventListener("click", function () {
-  lists.childNodes.forEach((element) => {
-    toDoList.push(element);
+  //adding listener to see if the submit button was clicked
+  inputButton.addEventListener("click", function () {
+    //checking to see if the text field is empty or not
+    if (inputTextField.value !== "") {
+      createList(inputTextField.value);
+    }
   });
 
-  for (let element of toDoList) {
-    element.remove();
-  }
-});
+  //adding listener to see if the enter key was pressed
+  inputTextField.addEventListener("keydown", function (event) {
+    //checking to see if the text field is empty or not and the key pressed was a enter key
+    if (event.key === "Enter" && inputTextField.value !== "") {
+      createList(inputTextField.value);
+    }
+  });
 
+  //addubg listener to see if the remove all button was pressed
+  removeAllButton.addEventListener("click", function () {
+    //putting all element into a array before removing
+    lists.childNodes.forEach((element) => {
+      toDoList.push(element);
+    });
+
+    //going through the array and removing all element from the web page
+    for (let element of toDoList) {
+      element.remove();
+    }
+
+    //setting the list container back to empty
+    toDoList = [];
+  });
+};
+
+//populating the list item and assosiating the remove button to it
 const createList = (element) => {
   let toDoElement = document.createElement("li");
   let deleteButton = document.createElement("button");
 
-  deleteButton.textContent = "Trash";
+  deleteButton.textContent = "Remove";
   deleteButton.type = "button";
   deleteButton.class = "delete";
   deleteButton.style.display = "none";
@@ -61,15 +75,20 @@ const createList = (element) => {
   inputTextField.value = "";
 };
 
+//this function adds the following event listener to the list
 const addAction = (element) => {
+  //adding event listener to see if the list was mouse overed
   element.addEventListener("mouseover", function () {
     element.style.backgroundColor = randomColorGenerater();
   });
 
+  //adding event listener to see if the mouse was moved away
   element.addEventListener("mouseout", function () {
     element.style.backgroundColor = "";
   });
 
+  //adding event listener to see if the list was selected and line throught or line removes it
+  //additionally it displays and undisplayed the remove button
   element.addEventListener("click", function () {
     if (element.id === "line-through") {
       element.style.textDecoration = "";
@@ -83,12 +102,14 @@ const addAction = (element) => {
   });
 };
 
+//this function is the remove the element from the list
 const addRemove = (element1, element2) => {
   element1.addEventListener("click", function () {
     element2.remove();
   });
 };
 
+//this creates a randomColor rgb combinations
 const randomColorGenerater = () => {
   let r = Math.floor(Math.random() * (500 - 0 + 1) + 0);
   let g = Math.floor(Math.random() * (500 - 0 + 1) + 0);
@@ -96,3 +117,5 @@ const randomColorGenerater = () => {
 
   return `rgb(${r}, ${g}, ${b})`;
 };
+
+populateInitialLayout();

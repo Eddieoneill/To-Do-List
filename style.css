@@ -25,3 +25,7 @@ body {
 .lists {
   font-size: 20px;
 }
+
+footer {
+  row-gap: 10px;
+}
