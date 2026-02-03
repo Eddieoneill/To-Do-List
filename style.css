@@ -13,17 +13,17 @@ body {
   column-gap: 5px;
   row-gap: 5px;
   background-color: #bcd8f1;
-  border: 2px solid #000000;
-}
-
-#inputContainer {
   justify-content: center;
 }
 
-.inputLabel {
-  margin-right: auto;
+/* #inputContainer {
+
 }
 
 header {
-  justify-content: center;
+
 }
+
+.lists {
+
+} */

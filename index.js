@@ -2,24 +2,36 @@ const inputDiv = document.querySelector(".inputContainer");
 const inputButton = document.createElement("button");
 const inputTextField = document.querySelector(".inputTextField");
 const lists = document.querySelector(".lists");
-let toDoList = [];
 
 inputButton.textContent = "Submit";
 inputButton.type = "button";
 
 inputButton.addEventListener("click", function () {
-  createList(inputTextField.textContent);
-  console.log(toDoList[0].textContent);
+  createList(inputTextField.value);
 });
 
 inputDiv.appendChild(inputButton);
 inputTextField.placeholder = "Type here...";
 
-const createList = (val) => {
-  let toDoElement = document.createElement("label");
+const createList = (element) => {
+  let toDoElement = document.createElement("li");
 
-  toDoElement.textContent = val.textContent;
-  inputTextField.textContent = "";
+  toDoElement.textContent = element;
+  addAction(toDoElement);
+  lists.appendChild(toDoElement);
+  inputTextField.value = "";
+};
 
-  toDoList.push(toDoElement);
+const addAction = (element) => {
+  element.addEventListener("mouseover", function () {
+    element.style.backgroundColor = "#dadf97";
+  });
+
+  element.addEventListener("mouseout", function () {
+    element.style.backgroundColor = "";
+  });
+
+  element.addEventListener("click", function () {
+    this.remove();
+  });
 };
