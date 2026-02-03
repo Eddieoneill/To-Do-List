@@ -28,12 +28,12 @@ inputTextField.addEventListener("keydown", function (event) {
 
 removeAllButton.addEventListener("click", function () {
   lists.childNodes.forEach((element) => {
-    lists.removeChild(element);
+    toDoList.push(element);
   });
-  // for (let element of lists.childNodes) {
-  //   console.log(lists.childNodes.length);
-  //   element.remove();
-  // }
+
+  for (let element of toDoList) {
+    element.remove();
+  }
 });
 
 const createList = (element) => {
@@ -42,11 +42,12 @@ const createList = (element) => {
 
   deleteButton.textContent = "Trash";
   deleteButton.type = "button";
-  toDoList.push(element);
+  deleteButton.class = "delete";
+  deleteButton.style.display = "none";
   toDoElement.textContent = `${element}        `;
   addAction(toDoElement);
   addRemove(deleteButton, toDoElement);
-  toDoElement.appendChild(deleteButton);
+  toDoElement.insertBefore(deleteButton, toDoElement.childNodes[0]);
   lists.appendChild(toDoElement);
   inputTextField.value = "";
 };
@@ -64,9 +65,11 @@ const addAction = (element) => {
     if (element.id === "line-through") {
       element.style.textDecoration = "";
       element.id = "";
+      element.childNodes[0].style.display = "none";
     } else {
       element.id = "line-through";
       element.style.textDecoration = "line-through";
+      element.childNodes[0].style.display = "";
     }
   });
 };
