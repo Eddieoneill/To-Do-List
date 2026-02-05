@@ -13,7 +13,8 @@ const populateInitialLayout = () => {
   inputButton.style.backgroundColor = "#3fdf00";
   inputButton.style.borderColor = "#ffffff";
   inputButton.style.color = "#ffffff";
-  removeAllButton.textContent = "Remove All";
+  removeAllButton.textContent = "||||Nuke||||";
+  removeAllButton.style.fontWeight = "bold";
   removeAllButton.type = "button";
   footer.appendChild(removeAllButton);
   inputDiv.appendChild(inputButton);
@@ -51,7 +52,7 @@ const populateInitialLayout = () => {
     }
 
     //setting the list container back to empty
-    toDoList = [];
+    toDoList.splice(0, toDoList.length);
   });
 };
 
