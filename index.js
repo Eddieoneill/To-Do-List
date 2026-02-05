@@ -57,7 +57,7 @@ const populateInitialLayout = () => {
 
 //populating the list item and assosiating the remove button to it
 const createList = (element) => {
-  let toDoElement = document.createElement("li");
+  let toDoElement = document.createElement("div");
   let deleteButton = document.createElement("button");
 
   deleteButton.textContent = "Remove";
@@ -117,5 +117,34 @@ const randomColorGenerater = () => {
 
   return `rgb(${r}, ${g}, ${b})`;
 };
+
+const fetchURL = (url) => {
+  return fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Status: ${response.status}`);
+    }
+
+    return response.json();
+  });
+};
+
+fetchURL(`https://pokeapi.co/api/v2/pokemon/charizard`).then((data) => {
+  let url =
+    data.sprites.versions[`generation-v`][`black-white`].animated.front_default;
+  let url2 =
+    data.sprites.versions[`generation-v`][`black-white`].animated.front_shiny;
+  console.log(url2);
+  let img = document.createElement("img");
+  let img2 = document.createElement("img");
+
+  img.src = url;
+  img.style.height = `${50}px`;
+  img.style.width = `${50}px`;
+  img2.src = url2;
+  img2.style.height = `${50}px`;
+  img2.style.width = `${50}px`;
+  footer.appendChild(img2);
+  footer.insertBefore(img, footer.childNodes[0]);
+});
 
 populateInitialLayout();
